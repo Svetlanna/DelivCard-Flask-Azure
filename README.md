@@ -50,7 +50,7 @@ Azure détecte `app.py` + `app` et lance gunicorn tout seul.
 URL : `https://delivcard-sveta.azurewebsites.net`
 
 Mettre à jour après une modification : relancer `az webapp up` (même commande).
-Voir les logs : `az webapp log tail --name delivcard-sveta --resource-group <ton-groupe>`
+Voir les logs : `az webapp log tail --name delivcard-sveta --resource-group <-groupe>`
 
 ## Carte
 Leaflet + OpenStreetMap : gratuit, sans clé API. Coordonnées GPS dans le CSV (fromLat, fromLng, toLat, toLng).
@@ -75,7 +75,7 @@ docker build -t delivcard .
 docker run -p 5000:8000 delivcard
 ```
 
-### Déployer sur Azure Container Apps (Docker pas obligatoire sur ton PC)
+### Déployer sur Azure Container Apps (Docker pas obligatoire sur  PC)
 L'image est construite directement dans Azure à partir du Dockerfile.
 ```bash
 az login

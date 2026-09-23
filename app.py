@@ -1,9 +1,4 @@
-"""
-Backend Flask pour l'app DelivCard.
-- Sert le frontend (static/index.html, css, js)
-- Lit les cartes depuis data/cards.csv
-- API REST : /api/cards, /api/cards/<id>, /api/cards/<id>/request
-"""
+
 import csv
 import json
 import math
@@ -16,7 +11,6 @@ from flask import Flask, jsonify, abort, request, send_from_directory
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 CSV_PATH = os.path.join(BASE_DIR, "data", "cards.csv")
 
-# Colonnes numériques à convertir en int
 INT_FIELDS = {"price", "requests", "pledge", "weight", "rating", "ratingCount"}
 # Colonnes GPS (décimales)
 FLOAT_FIELDS = {"fromLat", "fromLng", "toLat", "toLng"}
@@ -51,7 +45,6 @@ def write_cards(cards):
 
 
 def haversine_km(lat1, lng1, lat2, lng2):
-    """Distance à vol d'oiseau entre 2 points GPS (en km)."""
     r = 6371
     dlat = math.radians(lat2 - lat1)
     dlng = math.radians(lng2 - lng1)
@@ -62,7 +55,7 @@ def haversine_km(lat1, lng1, lat2, lng2):
 
 
 def compute_route(card):
-    """Calcule distance + durée réelles du trajet (OSRM), sinon une estimation."""
+
     key = (card["fromLat"], card["fromLng"], card["toLat"], card["toLng"])
     if key in ROUTE_CACHE:
         return ROUTE_CACHE[key]
@@ -116,7 +109,7 @@ def get_regions():
 
 @app.route("/api/cards", methods=["GET"])
 def get_cards():
-    """Toutes les cartes, ou filtrées : /api/cards?region=Occitanie"""
+
     cards = read_cards()
     region = request.args.get("region")
     if region:
@@ -143,7 +136,7 @@ def get_route(card_id):
 
 @app.route("/api/cards/<card_id>/request", methods=["POST"])
 def request_card(card_id):
-    """Quand l'utilisateur clique sur 'Request' : +1 au compteur de requests."""
+
     with lock:
         cards = read_cards()
         card = next((c for c in cards if c["id"] == card_id), None)
