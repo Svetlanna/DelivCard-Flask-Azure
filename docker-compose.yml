@@ -1,0 +1,9 @@
+services:
+  delivcard:
+    build: .
+    image: delivcard:latest
+    ports:
+      - "5000:8000"
+    volumes:
+      - ./data:/app/data     # le CSV reste sur ton PC
+    restart: unless-stopped
