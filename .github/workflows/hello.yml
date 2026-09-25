@@ -1,0 +1,12 @@
+name: Hello
+
+on: push
+
+jobs:
+  bonjour:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dire bonjour
+        run: echo "Bonjour, je suis le runner"
+      - name: Regarder autour de moi
+        run: ls -la
