@@ -36,3 +36,4 @@ pip install -r requirements.txt
 python app.py
 ```
 Ouvrir http://localhost:5000
+

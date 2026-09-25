@@ -60,6 +60,9 @@ def compute_route(card):
     if key in ROUTE_CACHE:
         return ROUTE_CACHE[key]
 
+
+
+
     try:
         url = OSRM_URL.format(**card)
         req = urllib.request.Request(url, headers={"User-Agent": "delivcard/1.0"})
